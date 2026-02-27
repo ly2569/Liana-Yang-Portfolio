@@ -3,7 +3,7 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { 
   Mail, 
@@ -13,6 +13,7 @@ import {
   Menu, 
   X, 
   ChevronRight,
+  ChevronLeft,
   Download,
   Briefcase,
   GraduationCap,
@@ -51,6 +52,9 @@ interface Project {
   impact: string;
   category: string;
   link: string;
+  image?: string;
+  gallery?: string[];
+  imageFit?: 'cover' | 'contain';
 }
 
 interface CategoryGroup {
@@ -142,10 +146,11 @@ const PORTFOLIO_DATA: CategoryGroup[] = [
       { 
         category: 'SOCIAL MEDIA CONTENT', 
         title: 'FANG NYC', 
-        desc: 'FANG NYC is a New York–based queer concept fashion brand. During my internship, I produced short-form video content covering runway shows, sponsorship collaborations, and influencer partnerships, translating live fashion moments into engaging digital narratives.\n\nI managed monthly content planning using Planoly and ensured cross-platform consistency across Instagram and TikTok. By analyzing engagement patterns and audience behavior through Meta Business Suite and Google Analytics, I refined content angles and posting strategy to improve performance.', 
+        desc: 'FANG NYC is a New York–based queer concept fashion brand. During my internship, I produced short-form video content covering runway shows, sponsorship collaborations, and influencer partnerships. I also managed monthly content planning using Planoly and ensured cross-platform consistency across Instagram and TikTok. By analyzing engagement patterns and audience behavior through Meta Business Suite and Google Analytics, I refined content angles and posting strategy to improve performance.', 
         tools: 'CapCut, Planoly, Meta Business Suite, Google Analytics, Canva', 
         impact: 'Produced Reels averaging 19–21K views, contributed to a 20% increase in engagement, and supported a 15% growth in overall campaign reach.',
-        link: 'https://www.instagram.com/fang.nyc/?hl=en'
+        link: 'https://www.instagram.com/fang.nyc/?hl=en',
+        image: 'https://lh3.googleusercontent.com/d/1AoZcpyXeBkpraBxo96q0879B6Q_dOaJ3'
       },
       { 
         category: 'SOCIAL MEDIA CONTENT', 
@@ -153,7 +158,8 @@ const PORTFOLIO_DATA: CategoryGroup[] = [
         desc: 'JOOPI is an AI-powered dating app targeting Gen Z and young urban users. To grow brand awareness and drive account followers, we launched a weekly street interview and challenge-style video series in New York City.\n\nI led the project end-to-end, from concept planning and content scripting to on-site shooting, editing, and performance analysis. Each episode explored dating culture, relationship dynamics, and spontaneous social reactions in NYC. By analyzing platform insights, I optimized content hooks, pacing, and distribution timing.', 
         tools: 'CapCut, Photoshop, Canva, YouTube Analytics', 
         impact: 'Increased total video views by 20% and significantly boosted follower growth and local event visibility.',
-        link: 'https://www.instagram.com/joopi.official/?hl=en'
+        link: 'https://www.instagram.com/joopi.official/?hl=en',
+        image: 'https://lh3.googleusercontent.com/d/1EjNDQ-zP1-Zik-8Mz_FUNlDKq_4lJyN2'
       }
     ]
   },
@@ -166,7 +172,13 @@ const PORTFOLIO_DATA: CategoryGroup[] = [
         desc: 'This portfolio includes a collection of short films produced both in academic settings and on independent film sets. The projects focus on narrative structure, visual composition, and themes of identity, perception, and emotional tension.\n\nAcross different productions, I took on multiple roles including Director, Screenwriter, Director of Photography, Gaffer, Audio Operator, Assistant Director, and Editor. These experiences strengthened my ability to translate abstract concepts into visual language while collaborating closely within structured production teams.', 
         tools: 'Canon C200, Adobe Premiere Pro, professional lighting and audio equipment', 
         impact: 'Developed end-to-end production expertise from pre-production to post-editing.',
-        link: 'https://drive.google.com/drive/folders/1QDR1RuehwAec_ZgdD7BqFtAcs4Q0GvRj?usp=sharing'
+        link: 'https://drive.google.com/drive/folders/1QDR1RuehwAec_ZgdD7BqFtAcs4Q0GvRj?usp=sharing',
+        gallery: [
+          'https://lh3.googleusercontent.com/d/1qUIJx2L188Td7a17JxQFswPyicBMVTP0',
+          'https://lh3.googleusercontent.com/d/1xfap8XIQzEBgu9gj2z29eIb5440Tiylo',
+          'https://lh3.googleusercontent.com/d/133nUu-qur8UCCXS4qC6Ws_es-BvuN8mU',
+          'https://lh3.googleusercontent.com/d/1OEiUEpYE3EmYP24sqstrA9Ssw20g3MGa'
+        ]
       },
       { 
         category: 'PRODUCTION', 
@@ -174,7 +186,13 @@ const PORTFOLIO_DATA: CategoryGroup[] = [
         desc: 'Hello Saturday is one of China’s leading national entertainment variety shows, produced by Hunan TV and broadcast to a nationwide audience.\n\nAs part of the production team, I participated in episode brainstorming, casting research, and entertainment trend analysis to align content with audience interests. I contributed to interview preparation, script refinement, and on-set coordination to ensure smooth execution. Notably, two game segment concepts I designed were successfully adopted and incorporated into the final broadcast episodes.', 
         tools: 'Competitive analysis research, scripting documents, production scheduling tools', 
         impact: 'Contributed to a 15% increase in episode viewership during the production period.',
-        link: 'https://youtu.be/zc5ZXdq4rKA?si=MW_ikkSih5MiB0lN'
+        link: 'https://youtu.be/zc5ZXdq4rKA?si=MW_ikkSih5MiB0lN',
+        gallery: [
+          'https://lh3.googleusercontent.com/d/18qRfnDWf9wxKwCxY9DgpK0McZZAha9_R',
+          'https://lh3.googleusercontent.com/d/1Qb1D0xJa43w6omQL7iGvYRkhSNbpvrni',
+          'https://lh3.googleusercontent.com/d/1GcbnIdM0NWivOlEJ_RSXVu53mi34IY8h',
+          'https://lh3.googleusercontent.com/d/1RHSR4kiwa7_V5E6K3eeAb-0q_Pf-ZbbB'
+        ]
       }
     ]
   },
@@ -187,7 +205,16 @@ const PORTFOLIO_DATA: CategoryGroup[] = [
         desc: 'Park Up was a campus music festival designed to bring together Chinese international students and celebrate shared cultural identity in New York. The event took place at Washington Square Park, a symbolic gathering space at the heart of campus life.\n\nFrom early planning to on-site execution, I was involved in structuring the event program, coordinating performers and hosts, and managing promotional rollout across social platforms. The festival featured New York–based REDnote and Douyin influencers, blending digital culture with live community engagement.', 
         tools: 'Event Logistics, Social Media Promotion, Talent Coordination', 
         impact: 'Attracted a massive turnout, generating 1.4M+ views online and amplifying event visibility across platforms.',
-        link: ''
+        link: '',
+        gallery: [
+          'https://lh3.googleusercontent.com/d/1PW1VL2SXa0pWmZBD1yaqi_BhAmX56rIz',
+          'https://lh3.googleusercontent.com/d/1ibNkOMxhQrPCpsdIyjMXpoyn9Q9ngONT',
+          'https://lh3.googleusercontent.com/d/1NFL8qa0-EV32_ThmVbr5wI6dXrjuFPJT',
+          'https://lh3.googleusercontent.com/d/131vzR0Eh7VJDGFBIu3aFqkPhjMots4Rc',
+          'https://lh3.googleusercontent.com/d/1uu29y_BEXOHPemwiop2gZ_LSHtpbIbD8',
+          'https://lh3.googleusercontent.com/d/1PjKq0TM_DqPlgVR2J0weaezgswiwYn27',
+          'https://lh3.googleusercontent.com/d/1phjfkEH7W9HSN4nzPaf5e8i5jIml9Se8'
+        ]
       },
       { 
         category: 'EVENTS', 
@@ -195,7 +222,14 @@ const PORTFOLIO_DATA: CategoryGroup[] = [
         desc: 'This project was an animation-themed pop-up event for YAMI, an Asian snack and beauty e-commerce platform. We targeted anime and Asian pop culture enthusiasts, recognizing their existing affinity for Asian snacks and beauty products.\n\nI helped develop the themed concept, pitch the idea, and secure a placement at Journal Squared for a curated market event. For conversion strategy, we designed a simple and low-friction process: participants scanned a QR code, signed up, and entered a raffle. Because the participation process was quick and incentive-driven, engagement felt organic rather than forced.', 
         tools: 'Canva, Photoshop, QR tracking system, on-site activation materials', 
         impact: 'Generated over 300 new registered users in a single activation.',
-        link: ''
+        link: '',
+        gallery: [
+          'https://lh3.googleusercontent.com/d/1KRiTD6Oyn76K6M-dLwwHYNKCUTuRhoXA',
+          'https://lh3.googleusercontent.com/d/1YhL-N3-SNAx-8EoaVb1jNDy2_ISwLbpJ',
+          'https://lh3.googleusercontent.com/d/1IMKMLuE6BjjEHBOR3Z-5r1XRu95oxtNH',
+          'https://lh3.googleusercontent.com/d/1xsf6wEl6NYk801VkUD5oC5NOs3Kg1QoQ',
+          'https://lh3.googleusercontent.com/d/1NS2sjhUVTkLcqIoKAxr98HNwXSvhbRjA'
+        ]
       }
     ]
   },
@@ -208,7 +242,9 @@ const PORTFOLIO_DATA: CategoryGroup[] = [
         desc: 'This Tableau case study analyzes how acquisition channels and customer touchpoints drive growth and revenue performance for an e-commerce company.\n\nI built interactive dashboards covering the full marketing funnel, from traffic acquisition to conversion and lifetime value. The analysis evaluated CAC, LTV, ROAS, media mix performance, attribution paths, and email engagement to identify optimization opportunities.', 
         tools: 'Tableau, SQL, Excel', 
         impact: 'Delivered actionable insights for funnel optimization and media mix efficiency.',
-        link: 'https://public.tableau.com/app/profile/liana.yang'
+        link: 'https://public.tableau.com/app/profile/liana.yang',
+        image: 'https://lh3.googleusercontent.com/d/19s2tnDaNK1hQ6A2BJNvMN0MmsmWeTDmt',
+        imageFit: 'contain'
       }
     ]
   },
@@ -221,7 +257,9 @@ const PORTFOLIO_DATA: CategoryGroup[] = [
         desc: 'JOOPI is an AI-powered dating app designed to make meaningful connections more accessible through affordable pricing, inclusive community positioning, and enhanced safety features.\n\nI conducted market research and competitive analysis to evaluate industry trends, pricing models, user demographics, and trust-related pain points. Based on these insights, I developed a comprehensive pitch deck outlining product positioning, monetization strategy, and go-to-market direction.', 
         tools: 'Market Research, Competitive Analysis, Keynote/PowerPoint', 
         impact: 'Delivered actionable audience insights informing product positioning and GTM strategy.',
-        link: 'https://drive.google.com/file/d/1KEGpwfQlWhTfaLxiokpzryM_DOYjXpMj/view?usp=sharing'
+        link: 'https://drive.google.com/file/d/1KEGpwfQlWhTfaLxiokpzryM_DOYjXpMj/view?usp=sharing',
+        image: 'https://lh3.googleusercontent.com/d/1Dqr8dka5gJd6ndQedWqSyeTwAjSaWakT',
+        imageFit: 'contain'
       },
       { 
         category: 'STRATEGY', 
@@ -229,7 +267,9 @@ const PORTFOLIO_DATA: CategoryGroup[] = [
         desc: 'We started with a simple question: how do people feel in winter? Instead of treating K-beauty and snacks as separate product categories, we looked at winter as an emotional and cultural moment.\n\nThrough trend research, we identified the rising influence of winter K-dramas, idol-inspired beauty routines, and cozy self-care culture. We developed a digital campaign that framed these products as part of a shared seasonal lifestyle, connecting products to familiar cultural references such as "K-drama winter glow".', 
         tools: 'Trend Research, Consumer Psychology, Campaign Pitching', 
         impact: 'Our pitch won 1st place in the national ambassador program and was later implemented as an official in-app campaign.',
-        link: 'https://www.canva.com/design/DAGXuUq-ghs/zSsHz9ltOZSriGTbcqP_3Q/edit?utm_content=DAGXuUq-ghs&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton'
+        link: 'https://www.canva.com/design/DAGXuUq-ghs/zSsHz9ltOZSriGTbcqP_3Q/edit?utm_content=DAGXuUq-ghs&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton',
+        image: 'https://lh3.googleusercontent.com/d/158Nc3wcDWeoYFEvz5IOKYHOC6lqrqpJ1',
+        imageFit: 'contain'
       }
     ]
   }
@@ -346,7 +386,23 @@ const SectionHeading = ({ title, subtitle }: { title: string; subtitle?: string 
 );
 
 const ProjectModal = ({ project, onClose }: { project: Project; onClose: () => void }) => {
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  
   if (!project) return null;
+
+  const images = project.gallery && project.gallery.length > 0 
+    ? project.gallery 
+    : [project.image || `https://picsum.photos/seed/${project.title}/1200/1600`];
+
+  const nextImage = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    setCurrentImageIndex((prev) => (prev + 1) % images.length);
+  };
+
+  const prevImage = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    setCurrentImageIndex((prev) => (prev - 1 + images.length) % images.length);
+  };
 
   return (
     <motion.div 
@@ -366,13 +422,63 @@ const ProjectModal = ({ project, onClose }: { project: Project; onClose: () => v
         {/* Close Button */}
         <button 
           onClick={onClose}
-          className="absolute top-6 right-6 z-50 text-brand-darkest hover:scale-110 transition-transform flex items-center space-x-2 text-xs font-bold tracking-widest uppercase"
+          className="absolute top-6 right-6 z-50 text-brand-darkest hover:scale-110 transition-transform flex items-center space-x-2 text-xs font-bold tracking-widest uppercase bg-brand-lightest/80 backdrop-blur-sm px-3 py-1 rounded-full md:bg-transparent md:p-0"
         >
           <span>Close</span>
           <X size={20} />
         </button>
 
-        {/* Left Column: Context */}
+        {/* Visuals Column (Carousel) */}
+        <div className="w-full md:w-1/2 h-full bg-brand-light relative overflow-hidden flex items-center justify-center p-4 md:p-8">
+          <div className="w-full h-full rounded-sm overflow-hidden shadow-2xl relative group">
+            <AnimatePresence mode="wait">
+              <motion.img 
+                key={currentImageIndex}
+                src={images[currentImageIndex]} 
+                alt={`${project.title} - ${currentImageIndex + 1}`}
+                initial={{ opacity: 0, x: 20 }}
+                animate={{ opacity: 1, x: 0 }}
+                exit={{ opacity: 0, x: -20 }}
+                transition={{ duration: 0.5 }}
+                className={`w-full h-full ${project.imageFit === 'contain' ? 'object-contain' : 'object-cover'} ${project.imageFit === 'contain' ? '' : 'grayscale group-hover:grayscale-0'} transition-all duration-1000`}
+                referrerPolicy="no-referrer"
+              />
+            </AnimatePresence>
+            
+            <div className="absolute inset-0 bg-brand-darkest/10"></div>
+
+            {images.length > 1 && (
+              <>
+                {/* Navigation Arrows */}
+                <button 
+                  onClick={prevImage}
+                  className="absolute left-4 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-brand-lightest/20 backdrop-blur-md border border-white/30 flex items-center justify-center text-white hover:bg-brand-lightest/40 transition-all"
+                >
+                  <ChevronLeft size={20} />
+                </button>
+                <button 
+                  onClick={nextImage}
+                  className="absolute right-4 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-brand-lightest/20 backdrop-blur-md border border-white/30 flex items-center justify-center text-white hover:bg-brand-lightest/40 transition-all"
+                >
+                  <ChevronRight size={20} />
+                </button>
+
+                {/* Pagination Dots */}
+                <div className="absolute bottom-6 left-1/2 -translate-x-1/2 flex space-x-2">
+                  {images.map((_, idx) => (
+                    <button
+                      key={idx}
+                      onClick={(e) => { e.stopPropagation(); setCurrentImageIndex(idx); }}
+                      className={`w-2 h-2 rounded-full transition-all ${idx === currentImageIndex ? 'bg-white w-4' : 'bg-white/40'}`}
+                    />
+                  ))}
+                </div>
+              </>
+            )}
+          </div>
+        </div>
+
+        {/* Context Column */}
         <div className="w-full md:w-1/2 p-8 md:p-16 overflow-y-auto custom-scrollbar">
           <div className="mb-12">
             <p className="text-brand-medium uppercase tracking-[0.2em] text-xs font-bold mb-4">{project.category}</p>
@@ -412,19 +518,6 @@ const ProjectModal = ({ project, onClose }: { project: Project; onClose: () => v
                 )}
               </div>
             </div>
-          </div>
-        </div>
-
-        {/* Right Column: Visuals */}
-        <div className="w-full md:w-1/2 bg-brand-light relative overflow-hidden flex items-center justify-center p-8">
-          <div className="w-full h-full rounded-sm overflow-hidden shadow-2xl relative group">
-            <img 
-              src={`https://picsum.photos/seed/${project.title}/1200/1600`} 
-              alt={project.title}
-              className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-1000"
-              referrerPolicy="no-referrer"
-            />
-            <div className="absolute inset-0 bg-brand-darkest/10"></div>
           </div>
         </div>
       </motion.div>
@@ -479,13 +572,13 @@ const Portfolio = () => {
                           onClick={() => setSelectedProject(project)}
                           className="group cursor-pointer"
                         >
-                          <div className="aspect-[4/3] bg-brand-light rounded-sm overflow-hidden mb-6 relative shadow-sm">
-                            <img 
-                              src={`https://picsum.photos/seed/${project.title}/800/600`} 
-                              alt={project.title}
-                              className="w-full h-full object-cover grayscale group-hover:grayscale-0 group-hover:scale-105 transition-all duration-700"
-                              referrerPolicy="no-referrer"
-                            />
+            <div className="aspect-[4/3] bg-brand-light rounded-sm overflow-hidden mb-6 relative shadow-sm">
+              <img 
+                src={project.image || (project.gallery && project.gallery[0]) || `https://picsum.photos/seed/${project.title}/800/600`} 
+                alt={project.title}
+                className={`w-full h-full ${project.imageFit === 'contain' ? 'object-contain p-4' : 'object-cover'} grayscale group-hover:grayscale-0 group-hover:scale-105 transition-all duration-700`}
+                referrerPolicy="no-referrer"
+              />
                             <div className="absolute inset-0 bg-brand-darkest/0 group-hover:bg-brand-darkest/40 transition-all duration-500 flex items-center justify-center opacity-0 group-hover:opacity-100">
                               <div className="flex items-center space-x-2 text-brand-lightest text-xs font-bold uppercase tracking-[0.2em]">
                                 <span>View Project</span>
@@ -720,9 +813,9 @@ export default function App() {
           >
             <div className="aspect-[3/4] md:aspect-[4/5] bg-brand-light rounded-sm overflow-hidden shadow-[0_30px_60px_-15px_rgba(54,48,42,0.3)] relative z-10">
               <img 
-                src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=1200&h=1600" 
+                src="https://lh3.googleusercontent.com/d/1whBI02FN7rrxsWYMC1Y_bPSgZK37BdZW" 
                 alt="Liana Yang" 
-                className="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-1000 ease-in-out"
+                className="w-full h-full object-cover transition-all duration-1000 ease-in-out"
                 referrerPolicy="no-referrer"
               />
             </div>

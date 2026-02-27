@@ -202,7 +202,7 @@ const PORTFOLIO_DATA: CategoryGroup[] = [
       { 
         category: 'EVENTS', 
         title: 'Park Up Music Festival', 
-        desc: 'Park Up was a campus music festival designed to bring together Chinese international students and celebrate shared cultural identity in New York. The event took place at Washington Square Park, a symbolic gathering space at the heart of campus life.\n\nFrom early planning to on-site execution, I was involved in structuring the event program, coordinating performers and hosts, and managing promotional rollout across social platforms. The festival featured New York–based REDnote and Douyin influencers, blending digital culture with live community engagement.', 
+        desc: 'Park Up was a campus music festival designed to bring together Chinese international students and celebrate shared cultural identity in New York. This event took place at Washington Square Park.\n\nFrom early planning to on-site execution, I was involved in structuring the event program, coordinating performers and hosts, and managing promotional rollout across social platforms. The festival featured New York–based REDnote and Douyin influencers, blending digital culture with live community engagement.', 
         tools: 'Event Logistics, Social Media Promotion, Talent Coordination', 
         impact: 'Attracted a massive turnout, generating 1.4M+ views online and amplifying event visibility across platforms.',
         link: '',
@@ -263,7 +263,7 @@ const PORTFOLIO_DATA: CategoryGroup[] = [
       },
       { 
         category: 'STRATEGY', 
-        title: 'Winter Season Campaign Pitch Deck', 
+        title: 'YAMI Winter Season Campaign Pitch Deck', 
         desc: 'We started with a simple question: how do people feel in winter? Instead of treating K-beauty and snacks as separate product categories, we looked at winter as an emotional and cultural moment.\n\nThrough trend research, we identified the rising influence of winter K-dramas, idol-inspired beauty routines, and cozy self-care culture. We developed a digital campaign that framed these products as part of a shared seasonal lifestyle, connecting products to familiar cultural references such as "K-drama winter glow".', 
         tools: 'Trend Research, Consumer Psychology, Campaign Pitching', 
         impact: 'Our pitch won 1st place in the national ambassador program and was later implemented as an official in-app campaign.',

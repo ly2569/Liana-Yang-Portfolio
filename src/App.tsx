@@ -25,7 +25,8 @@ import {
   Globe,
   Plus,
   Minus,
-  ArrowUpRight
+  ArrowUpRight,
+  Sparkles
 } from 'lucide-react';
 
 // --- Types ---
@@ -65,6 +66,34 @@ interface CategoryGroup {
 // --- Data ---
 const EXPERIENCE: Experience[] = [
   {
+    role: 'Public Relations & Marketing Intern',
+    company: 'Bao Communications',
+    location: 'New York, NY',
+    date: 'JUN 2026 - PRESENT',
+    bullets: [
+      'Managed weekly content scheduling via Meta Business Suite for 4 official overseas accounts (3 regional culture & tourism, 1 university), the largest with 3.4M+ followers across Facebook, X and Instagram.',
+      'Analyzed social performance data (reach, impressions, engagement rate, paid vs. organic views) for monthly, quarterly and annual reports, using AI tools to clean and analyze platform exports.',
+      'Lifted one account\'s average monthly Facebook views by 59% and interactions per post by 32% within 4 months.',
+      'Grew the agency\'s Xiaohongshu account from ~100 to 234 followers (+134%) through weekly content.',
+      'Sourced influencers for 10+ brands through an AI-assisted pipeline with API-automated email outreach; benchmarked past collaborations by CPM to build a cost-efficient creator pool.',
+      'Built an automated outreach funnel to recruit expert mentors for an AI mentorship platform client, sourcing 600+ candidates and onboarding 15, with a 65% reply-to-onboard conversion rate.',
+      'Drafted 20+ press releases across 10+ clients; built an AI drafting workflow that cut turnaround from an afternoon to ~20 minutes.'
+    ]
+  },
+  {
+    role: 'Marketing Manager',
+    company: 'Bonjour Girls',
+    location: 'New York, NY',
+    date: 'FEB 2026 - PRESENT',
+    bullets: [
+      'Multi-Channel Content Strategy: Plan and manage content across Instagram, LinkedIn, Xiaohongshu, and WeChat to maintain a consistent brand voice and storytelling.',
+      'Content Creation & Campaign Execution: Develop content calendars, write social media copy, and support event promotions to drive audience engagement.',
+      'Community Growth: Lead strategy for the newsletter and official accounts, engaging and growing a community of 10,000+ members.',
+      'Data Analysis: Track and analyze cross-platform engagement metrics to optimize content performance and digital outreach.',
+      'Brand Storytelling & Collaboration: Work with the marketing team to execute campaigns and develop community-driven content centered on women-focused narratives.'
+    ]
+  },
+  {
     role: 'Marketing and Communication Intern',
     company: 'FANG NYC',
     location: 'New York, NY',
@@ -82,7 +111,7 @@ const EXPERIENCE: Experience[] = [
     date: 'Jun 2025 - Sep 2025',
     bullets: [
       'Managed multi-platform content (Instagram, TikTok, YouTube, X, Threads, REDnote) using CapCut, Photoshop, and Canva; produced and edited weekly street interview/challenge videos that drove a 20% increase in total views and strengthened audience engagement.',
-      'Conducted market and competitive research for Al dating app JOOPI, delivering 3+ feature proposals and actionable audience insights that informed product positioning and user acquisition strategies.',
+      'Conducted market and competitive research for AI dating app JOOPI, delivering 3+ feature proposals and actionable audience insights that informed product positioning and user acquisition strategies.',
       'Designed brand assets and style guide and built a go-to-market strategy that outlined launch timeline, key messaging, and acquisition channels contributing to a cohesive brand identity and measurable traction post-launch.'
     ]
   },
@@ -128,7 +157,7 @@ const EDUCATION: Education[] = [
     school: 'New York University, Steinhardt',
     location: 'New York, NY',
     date: 'May 2026',
-    notes: 'Minor in Business of Entertainment Industry and Technology'
+    notes: 'Minor in Business of Entertainment, Media, and Technology (NYU Stern)'
   },
   {
     degree: 'Bachelor of Arts, Communication',
@@ -283,8 +312,13 @@ const SKILLS = [
   },
   {
     category: "Marketing Tools",
-    items: ["Meta Business Suite", "TikTok Ads", "Mailchimp", "HubSpot"],
+    items: ["Meta Business Suite", "TikTok Ads", "Mailchimp", "HubSpot", "Xiaohongshu (Rednote)", "EasyKOL"],
     icon: Target
+  },
+  {
+    category: "AI Tools",
+    items: ["Claude Code", "Codex"],
+    icon: Sparkles
   },
   {
     category: "Creative Design",
@@ -849,7 +883,7 @@ export default function App() {
               <div className="space-y-6 text-[#574C3F] leading-[1.8] text-lg">
                 {[
                   "I have always been fascinated by why certain stories stay with us, why some performances go viral, why some campaigns spark conversation, and why some brands feel personal.",
-                  "As a Media, Culture, and Communications student at NYU, I have worked across both content production and digital marketing through my coursework and internship experiences. From shaping variety show content to leading digital teams and launching campaigns, I have learned that creativity becomes most powerful when it is supported by insight and guided by strategy.",
+                  "As a recent NYU graduate in Media, Culture, and Communication, I have worked across both content production and digital marketing through my coursework and internship experiences. From shaping variety show content to leading digital teams and launching campaigns, I have learned that creativity becomes most powerful when it is supported by insight and guided by strategy. Most recently, I've been working at a New York PR agency, managing and analyzing official social accounts with millions of followers, building AI-assisted workflows for influencer sourcing and outreach, and turning performance data into content decisions.",
                   "I am passionate about building brands that resonate emotionally while remaining grounded in strategy and measurable impact."
                 ].map((text, i) => (
                   <motion.p
@@ -958,7 +992,7 @@ export default function App() {
               
               <div className="space-y-6">
                 <a 
-                  href="mailto:ly2569@nyu.edu" 
+                  href="mailto:ylyliana47@gmail.com" 
                   className="flex items-center space-x-4 group transition-opacity hover:opacity-80"
                 >
                   <div className="w-12 h-12 rounded-full border border-brand-medium flex items-center justify-center group-hover:bg-brand-medium transition-all">
@@ -966,7 +1000,7 @@ export default function App() {
                   </div>
                   <div>
                     <p className="text-xs text-brand-medium uppercase tracking-widest">Email</p>
-                    <p className="text-brand-darkest font-medium transition-colors group-hover:text-brand-medium">ly2569@nyu.edu</p>
+                    <p className="text-brand-darkest font-medium transition-colors group-hover:text-brand-medium">ylyliana47@gmail.com</p>
                   </div>
                 </a>
                 <a 

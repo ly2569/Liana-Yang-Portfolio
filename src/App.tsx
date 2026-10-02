@@ -667,7 +667,7 @@ const Resume = () => {
               transition={{ delay: 0.2 }}
             >
               <a 
-                href="https://drive.google.com/file/d/1_yqEbHWruwy-bdwpd9pow1tS9qbg9OS8/view?usp=sharing"
+                href="https://drive.google.com/file/d/1sQkRTetoR7y8INu8PtJ9yl4TXWcByXwH/view?usp=sharing"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="mt-8 md:mt-0 flex items-center space-x-2 border border-[#B9A590]/30 px-6 py-3 rounded-full text-xs font-bold uppercase tracking-widest hover:bg-[#F6F3EC] hover:text-[#36302A] transition-all duration-300"
@@ -757,7 +757,7 @@ const Resume = () => {
         {/* Download Button */}
         <div className="mt-32 flex justify-center">
           <a 
-            href="https://drive.google.com/file/d/1_yqEbHWruwy-bdwpd9pow1tS9qbg9OS8/view?usp=sharing"
+            href="https://drive.google.com/file/d/1sQkRTetoR7y8INu8PtJ9yl4TXWcByXwH/view?usp=sharing"
             target="_blank"
             rel="noopener noreferrer"
             className="flex items-center space-x-3 border border-[#B9A590]/30 px-10 py-5 rounded-full text-xs font-bold uppercase tracking-widest hover:bg-[#F6F3EC] hover:text-[#36302A] transition-all duration-500 group"
